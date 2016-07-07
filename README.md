@@ -21,7 +21,7 @@ Afterwards upload this script to your server, or clone it using `git`:
 ```bash
 # If git is missing on your server google on how to install it.
 # On Debian/Ubuntu the command is 'sudo apt-get install git'
-git clone https://github.com/frk1/steamhourboost.git
+git clone https://github.com/frk1/steamhourboostv2.git
 ```
 
 `cd` into the folder and install the dependencies

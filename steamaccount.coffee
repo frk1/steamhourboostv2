@@ -36,3 +36,9 @@ module.exports = class SteamAccount
 
   error: (err) =>
     console.log "#{@logheader()} #{err}"
+    switch err.eresult
+      when SteamUser.EResult.LoggedInElsewhere then _.delay @login, 300000
+      when SteamUser.EResult.NoConnection then _.delay @login, 300000
+      when SteamUser.EResult.ServiceUnavailable then _.delay @login, 300000
+      when SteamUser.EResult.AlreadyLoggedInElsewhere then _.delay @login, 900000
+      when SteamUser.EResult.LogonSessionReplaced then _.delay @login, 30000

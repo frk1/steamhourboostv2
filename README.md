@@ -20,7 +20,7 @@ Afterwards upload this script to your server, or clone it using `git`:
 
 ```bash
 # If git is missing on your server google on how to install it.
-# On debian the commend is 'sudo apt-get install git'
+# On Debian/Ubuntu the commend is 'sudo apt-get install git'
 git clone https://github.com/frk1/steamhourboost.git
 ```
 

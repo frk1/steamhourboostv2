@@ -2,7 +2,7 @@
 
 This new version natively supports two-factor authentication using the shared secret of your app.
 
-To add new users to the `database.json` run coffee user.coffee and follow the instructions.
+To add new users to the `database.json` run `coffee user.coffee` and follow the instructions.
 
 By default it will boost the games CS 1.6 and CS:GO. If you want to change the games that are being boosted, edit the `database.json` directly!
 
@@ -41,9 +41,19 @@ pm2 start boost.coffee
 
 That's it!
 
+### Can I use my old `db.json` file?
+
+Not directly. But you can convert it:
+
+```bash
+coffee converter.coffee
+```
+
+That's it, your new `database.json` is ready!
+
 ### How do I restart the script?
 
-That's easy. Just tell pm2 to do so:
+That's easy. Just tell `pm2` to do so:
 
 ```bash
 pm2 restart all

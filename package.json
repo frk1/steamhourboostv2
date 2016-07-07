@@ -1,0 +1,33 @@
+{
+  "name": "steamhourboostv2",
+  "version": "2.0.0",
+  "description": "Steam hour boost with two factor support",
+  "main": "boost.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frk1/steamhourboostv2.git"
+  },
+  "keywords": [
+    "steam",
+    "boost",
+    "csgo"
+  ],
+  "author": "frk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frk1/steamhourboostv2/issues"
+  },
+  "homepage": "https://github.com/frk1/steamhourboostv2#readme",
+  "dependencies": {
+    "jsonfile": "^2.3.1",
+    "lodash": "^4.13.1",
+    "moment": "^2.14.1",
+    "pad-right": "^0.2.2",
+    "readline-sync": "^1.4.4",
+    "steam-totp": "^1.4.0",
+    "steam-user": "^3.9.1"
+  }
+}

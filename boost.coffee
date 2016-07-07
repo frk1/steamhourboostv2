@@ -14,4 +14,4 @@ pad = "[#{moment().format()} - #{_.maxBy(_.keys(database), 'length')}]".length
 
 _.forEach database, (data, name) ->
   data.games ?= [10,730]
-  new SteamAccount(name, data.password, data.secret, data.games, pad).boost()
+  new SteamAccount(name, data.password, data.sentry, data.secret, data.games, pad).boost()

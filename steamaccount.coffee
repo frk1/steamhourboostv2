@@ -5,14 +5,16 @@ moment          = require 'moment'
 padRight        = require 'pad-right'
 
 module.exports = class SteamAccount
-  constructor: (@name, @password, @secret, @games, @indent = 0) ->
+  constructor: (@name, @password, @sentry, @secret, @games, @indent = 0) ->
     @client = new SteamUser
+    @client.setOption 'dataDirectory', null
     @client.on 'error', @error
 
   logheader: =>
     padRight "[#{moment().format()} - #{@name}]", @indent, ' '
 
   login: =>
+    @client.setSentry Buffer.from(@sentry, 'base64') if @sentry
     @client.logOn
       accountName: @name,
       password: @password,

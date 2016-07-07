@@ -7,7 +7,7 @@ To add new users to the `database.json` run `coffee user.coffee` and follow the 
 By default it will boost the games CS 1.6 and CS:GO. If you want to change the games that are being boosted, edit the `database.json` directly!
 
 ### How to install
-First you need to install a recent version of `node.js`, `coffeescript` and `pm2`:
+First you need to install a recent version of `node.js`, `coffee-script` and `pm2`:
 
 ```bash
 wget "https://nodejs.org/dist/latest/node-$(curl -L 'nodejs.org/dist/index.tab' | sed -n '2p' | awk '{ print $1 }')-linux-x64.tar.gz" -O /tmp/nodejs.tar.gz

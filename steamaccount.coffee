@@ -8,6 +8,7 @@ module.exports = class SteamAccount
   constructor: (@name, @password, @sentry, @secret, @games, @indent = 0) ->
     @client = new SteamUser
     @client.setOption 'dataDirectory', null
+    @client.setOption 'promptSteamGuardCode', false
     @client.on 'error', @error
 
   logheader: =>

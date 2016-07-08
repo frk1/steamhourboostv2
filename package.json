@@ -29,5 +29,8 @@
     "readline-sync": "^1.4.4",
     "steam-totp": "^1.4.0",
     "steam-user": "^3.9.1"
+  },
+  "engines": {
+    "node": ">=5.10.0"
   }
 }

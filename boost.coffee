@@ -10,7 +10,7 @@ catch e
   console.log "Error reading database.json!"
   process.exit 0
 
-pad = "[#{moment().format()} - #{_.maxBy(_.keys(database), 'length')}]".length
+pad = "[#{moment().format('YYYY-MM-DD hh:mm:ss')} - #{_.maxBy(_.keys(database), 'length')}]".length
 
 _.forEach database, (data, name) ->
   data.games ?= [10, 730]

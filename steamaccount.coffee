@@ -12,7 +12,7 @@ module.exports = class SteamAccount
     @client.on 'error', @error
 
   logheader: =>
-    padRight "[#{moment().format('YYYY-MM-DD hh:mm:ss')} - #{@name}]", @indent, ' '
+    padRight "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{@name}]", @indent, ' '
 
   login: =>
     @client.setSentry Buffer.from(@sentry, 'base64') if @sentry

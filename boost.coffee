@@ -12,6 +12,16 @@ catch e
 
 pad = "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{_.maxBy(_.keys(database), 'length')}]".length
 
-_.forEach database, (data, name) ->
+accounts = _.map database, (data, name) ->
   data.games ?= [10, 730]
-  new SteamAccount(name, data.password, data.sentry, data.secret, data.games, pad).boost()
+  new SteamAccount name, data.password, data.sentry, data.secret, data.games, pad
+
+restartBoost = ->
+  _.forEach accounts, (acc) -> acc.logoff()
+  _.delay ->
+    _.forEach accounts, (acc) -> acc.boost()
+  , 30000
+  _.delay restartBoost, 1800000
+
+_.forEach accounts, (acc) -> acc.boost()
+_.delay restartBoost, 1800000

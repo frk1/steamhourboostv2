@@ -12,6 +12,7 @@ module.exports = class SteamAccount
     @client = new SteamUser null, options
     @client.setSentry Buffer.from(@sentry, 'base64') if @sentry
     @client.on 'error', @error
+    @client.on 'steamGuard', @onSteamGuard
 
   logheader: =>
     padRight "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{@name}]", @indent, ' '
@@ -26,13 +27,18 @@ module.exports = class SteamAccount
     @client.gamesPlayed []
     @client.logOff()
 
+  error: (err) =>
+    console.log "#{@logheader()} #{err}"
+
+  onSteamGuard: =>
+    @steamGuardRequested = true
+    console.log "#{@logheader()} Failed, steam guard requested!"
+
   boost: =>
+    return @onSteamGuard() if @steamGuardRequested
     @client.removeAllListeners 'loggedOn'
     @client.once 'loggedOn', (details) =>
       @client.setPersona SteamUser.EPersonaState.Offline
       @client.gamesPlayed @games ? [10, 730]
       console.log "#{@logheader()} Starting to boost games!"
     @login()
-
-  error: (err) =>
-    console.log "#{@logheader()} #{err}"

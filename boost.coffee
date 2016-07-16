@@ -10,19 +10,17 @@ catch e
   console.log "Error reading database.json!"
   process.exit 0
 
-pad = "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{_.maxBy(_.keys(database), 'length')}]".length
-
-accounts = _.map database, (data, name) ->
-  data.games ?= [10, 730]
-  new SteamAccount name, data.password, data.sentry, data.secret, data.games, pad
+pad = 24 + _.maxBy(_.keys(database), 'length').length
+accounts = _.map database, ({password, sentry, secret, games}, name) ->
+  games ?= [10, 730]
+  new SteamAccount name, password, sentry, secret, games, pad
 
 startBoost = ->
-  _.forEach accounts, (acc) ->
-    acc.boost()
+  _.forEach accounts, _.method 'boost'
 
 restartBoost = ->
   console.log '\n---- Restarting accounts ----\n'
-  _.forEach accounts, (acc) -> acc.logoff()
+  _.forEach accounts, _.method 'logoff'
   _.delay startBoost, 30000
   _.delay restartBoost, 1800000
 

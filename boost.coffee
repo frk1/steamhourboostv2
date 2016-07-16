@@ -12,18 +12,14 @@ catch e
 
 pad = 24 + _.maxBy(_.keys(database), 'length').length
 accounts = _.map database, ({password, sentry, secret, games}, name) ->
-  games ?= [10, 730]
   new SteamAccount name, password, sentry, secret, games, pad
-
-startBoost = ->
-  _.forEach accounts, _.method 'boost'
 
 restartBoost = ->
   console.log '\n---- Restarting accounts ----\n'
   _.forEach accounts, _.method 'logoff'
-  _.delay startBoost, 30000
+  _.delay _.forEach, 30000, accounts, _.method 'boost'
   _.delay restartBoost, 1800000
 
 console.log '\n---- Starting to boost ----\n'
-startBoost()
+_.forEach accounts, _.method 'boost'
 _.delay restartBoost, 1800000

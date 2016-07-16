@@ -22,6 +22,7 @@ module.exports = class SteamAccount
       twoFactorCode: SteamTotp.generateAuthCode(@secret) if @secret
 
   logoff: =>
+    @client.gamesPlayed []
     @client.logOff()
 
   boost: =>

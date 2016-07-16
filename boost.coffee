@@ -26,4 +26,4 @@ restartBoost = ->
 
 console.log '\n---- Starting to boost ----\n'
 startBoost()
-_.delay restartBoost, 10000
+_.delay restartBoost, 1800000

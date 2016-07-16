@@ -26,6 +26,7 @@ module.exports = class SteamAccount
     @client.logOff()
 
   boost: =>
+    @client.removeAllListeners 'loggedOn'
     @client.once 'loggedOn', (details) =>
       @client.setPersona SteamUser.EPersonaState.Offline
       @client.gamesPlayed @games

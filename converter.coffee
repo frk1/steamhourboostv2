@@ -1,5 +1,5 @@
-_               = require 'lodash'
-jsonfile        = require 'jsonfile'
+_        = require 'lodash'
+jsonfile = require 'jsonfile'
 jsonfile.spaces = 2
 
 try

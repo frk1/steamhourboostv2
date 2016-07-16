@@ -1,8 +1,8 @@
-_               = require 'lodash'
-SteamUser       = require 'steam-user'
-SteamTotp       = require 'steam-totp'
-moment          = require 'moment'
-padRight        = require 'pad-right'
+_         = require 'lodash'
+SteamUser = require 'steam-user'
+SteamTotp = require 'steam-totp'
+moment    = require 'moment'
+padRight  = require 'pad-right'
 
 module.exports = class SteamAccount
   constructor: (@name, @password, @sentry, @secret, @games, @indent = 0) ->

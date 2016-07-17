@@ -18,10 +18,12 @@ module.exports = class SteamAccount
     padRight "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{@name}]", @indent, ' '
 
   login: =>
-    @client.logOn
-      accountName: @name,
-      password: @password,
-      twoFactorCode: SteamTotp.generateAuthCode(@secret) if @secret
+    if @secret
+      SteamTotp.getAuthCode @secret, (err, code) =>
+        @client.logOn accountName: @name, password: @password, twoFactorCode: code
+    else
+      @client.logOn accountName: @name, password: @password
+
 
   logoff: =>
     return if @steamGuardRequested

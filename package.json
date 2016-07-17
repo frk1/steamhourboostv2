@@ -30,7 +30,7 @@
     "pad-right": "^0.2.2",
     "readline-sync": "^1.4.4",
     "steam-totp": "^1.4.0",
-    "steam-user": "^3.10.0"
+    "steam-user": "^3.11.0"
   },
   "engines": {
     "node": ">=5.10.0"

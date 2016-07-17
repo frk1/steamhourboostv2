@@ -32,7 +32,7 @@ module.exports = class SteamAccount
     console.log "#{@logheader()} #{err}"
 
   onSteamGuard: =>
-    @steamGuardRequested = true
+    @steamGuardRequested = true if not @secret
     console.log "#{@logheader()} Failed, steam guard requested!"
 
   boost: =>

@@ -32,5 +32,8 @@
   },
   "spacing_after_comma": {
     "level": "error"
+  },
+  "missing_fat_arrows": {
+    "level": "warn"
   }
 }

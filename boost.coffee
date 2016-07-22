@@ -2,6 +2,7 @@ _            = require 'lodash'
 readLineSync = require 'readline-sync'
 jsonfile     = require 'jsonfile'
 moment       = require 'moment'
+Promise      = require 'bluebird'
 SteamAccount = require './steamaccount.coffee'
 
 try
@@ -16,10 +17,11 @@ accounts = _.map database, ({password, sentry, secret, games}, name) ->
 
 restartBoost = ->
   console.log '\n---- Restarting accounts ----\n'
-  _.forEach accounts, _.method 'logoff'
-  _.delay _.forEach, 30000, accounts, _.method 'boost'
-  _.delay restartBoost, 1800000
+  Promise.map accounts, _.method 'restartGames'
+  .delay 1800000
+  .finally restartBoost
 
 console.log '\n---- Starting to boost ----\n'
-_.forEach accounts, _.method 'boost'
-_.delay restartBoost, 1800000
+Promise.map accounts, _.method 'boost'
+.delay 1800000
+.then restartBoost

@@ -7,7 +7,7 @@ moment       = require 'moment'
 EventEmitter = require 'events'
 
 module.exports = class SteamAccount extends EventEmitter
-  constructor: (@name, @password, @sentry, @secret, @games, @indent=0, @printOut=true) ->
+  constructor: (@name, @password, @sentry, @secret, @games, @indent=0) ->
     options =
       promptSteamGuardCode: false
       dataDirectory: null
@@ -54,7 +54,7 @@ module.exports = class SteamAccount extends EventEmitter
     .then =>
       @client.setPersona SteamUser.EPersonaState.Offline
       @client.gamesPlayed @games ? [10, 730]
-      console.log "#{@logheader()} Starting to boost games!" if @printOut
+      console.log "#{@logheader()} Starting to boost games!"
     .catch (err) => console.error "#{@logheader()} #{err}"
 
   restartGames: =>

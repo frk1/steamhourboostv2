@@ -11,8 +11,8 @@ catch e
 database = {}
 _.forEach old, (entry) ->
   database[entry.accountName] =
-    password: entry.password,
-    games: entry.games ? [10, 730],
+    password: entry.password
+    games: if entry.games then _.map entry.games, _.toInteger else [10, 730]
     sentry: entry.shaSentryfile
 
 jsonfile.writeFileSync 'database.json', database

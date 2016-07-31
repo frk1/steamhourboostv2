@@ -31,7 +31,7 @@ client.on 'steamGuard', (domain, callback) ->
 client.on 'sentry', (sentry) ->
   database[username].sentry = sentry.toString('base64')
   jsonfile.writeFileSync 'database.json', database
-  _.delay process.exit, 500, 0
+  _.delay process.exit, 1500, 0
 
 client.on 'loggedOn', (details) ->
   console.log "Logged into Steam as '#{username}' #{client.steamID?.getSteam3RenderedID()} => #{client.steamID?.getSteam2RenderedID()}"

@@ -27,10 +27,10 @@
     "coffee-script": "^1.10.0",
     "inquirer": "^1.1.2",
     "jsonfile": "^2.3.1",
-    "lodash": "^4.14.0",
+    "lodash": "^4.14.1",
     "moment": "^2.14.1",
     "steam-totp": "^1.4.0",
-    "steam-user": "^3.11.0",
+    "steam-user": "^3.11.1",
     "string": "^3.3.1"
   },
   "engines": {

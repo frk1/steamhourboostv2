@@ -34,10 +34,11 @@ module.exports = class SteamAccount extends EventEmitter
       @once 'clientError', reject
       @once 'clientSteamGuard', -> reject "Steam guard requested!"
       @client.once 'loggedOn', resolve
-      @client.logOn
-        accountName: @name
-        password: @password
-        twoFactorCode: SteamTotp.getAuthCode @secret if @secret
+      if @secret
+        SteamTotp.getAuthCode @secret, (err, code) =>
+          @client.logOn accountName: @name, password: @password, twoFactorCode: code
+      else
+        @client.logOn accountName: @name, password: @password
     .timeout 10000
     .catch Promise.TimeoutError, ->
       Promise.reject "Timed out at login"

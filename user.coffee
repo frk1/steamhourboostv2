@@ -26,6 +26,7 @@ inquirer.prompt [
   {name: 'password', message: 'Password:', type: 'password'}
 ]
 .then ({username, password}) ->
+  database[username] = {}
   client = new SteamUser
   client.setOption 'promptSteamGuardCode', false
   client.setOption 'dataDirectory', null
@@ -39,15 +40,17 @@ inquirer.prompt [
       .then ({code}) -> callback code
     else
       inquirer.prompt [name: 'secret', message: 'Two-factor shared secret:']
-      .then ({secret}) -> callback SteamTotp.generateAuthCode secret
+      .then ({secret}) ->
+        SteamTotp.generateAuthCode secret, (err, code) ->
+          database[username].secret = secret
+          callback code
 
   client.on 'sentry', (sentry) ->
     database[username].sentry = sentry.toString('base64')
     jsonfile.writeFileSync 'database.json', database
 
   client.on 'loggedOn', (details) ->
-    database[username] = password: password, games: [10, 730]
-    database[username].secret = secret if secret
+    database[username].password = password
     inquirer.prompt promptGames
     .then ({games}) ->
       database[username].games = games

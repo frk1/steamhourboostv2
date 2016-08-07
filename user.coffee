@@ -1,8 +1,7 @@
-_               = require 'lodash'
-SteamUser       = require 'steam-user'
-SteamTotp       = require 'steam-totp'
-inquirer        = require 'inquirer'
-jsonfile        = require 'jsonfile'
+SteamUser = require 'steam-user'
+SteamTotp = require 'steam-totp'
+inquirer  = require 'inquirer'
+jsonfile  = require 'jsonfile'
 jsonfile.spaces = 2
 
 try

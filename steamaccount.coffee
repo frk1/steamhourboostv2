@@ -1,4 +1,3 @@
-_            = require 'lodash'
 S            = require 'string'
 SteamUser    = require 'steam-user'
 SteamTotp    = require 'steam-totp'

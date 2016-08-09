@@ -41,7 +41,7 @@ bot.use telegrafFlow.middleware()
 defaultFlow = new Flow 'default-flow'
 defaultFlow.command '/2fa', (ctx) ->
   return if not isAdmin ctx
-  ctx.flow.start 'twofa-flow'
+  ctx.flow.startForResult 'twofa-flow'
 defaultFlow.command '/id', (ctx) ->
   ctx.reply "Your id is #{ctx.from.id}"
 defaultFlow.onResult (ctx) -> ctx.reply ctx.flow.result, markupHideKeyboard

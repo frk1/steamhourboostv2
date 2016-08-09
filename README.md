@@ -64,3 +64,22 @@ If you have multiple processes running you may want to specificy the id of the p
 ```bash
 pm2 ls
 ```
+
+## Telegram Bot
+
+There is an optional telegram bot included to generate 2FA tokens using telegram.
+
+To use it you will need to aquire a bot token from *@BotFather*. Google on how to do that.
+
+Execute `coffee telebot.coffee` once and it will create an empty `telebot.json`. Set your bot token in it and start the bot again.
+
+Ask your bot about your id (use **telegram**, _not_ the console):
+
+```
+/id
+Your id is **********
+```
+
+Set your id as `admin_id` in the `telebot.json`. Now you can start your telegram bot using `pm2 start telebot.coffee`.
+
+That's it! Your bot is now waiting for your requests. Ask him about your `/2fa` tokens! It will ask which account you mean.

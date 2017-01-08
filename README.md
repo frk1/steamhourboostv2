@@ -14,6 +14,7 @@ wget --no-check-certificate "https://nodejs.org/dist/latest/node-$(curl -L 'node
 sudo tar --strip-components 1 -xzvf /tmp/nodejs.tar.gz -C /usr/local
 sudo npm -g install npm@latest
 sudo npm -g install coffee-script pm2
+sudo pm2 install coffeescript
 ```
 
 Afterwards upload this script to your server, or clone it using `git`:

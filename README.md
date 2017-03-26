@@ -1,4 +1,4 @@
-##steamhourboost v2
+## steamhourboost v2
 
 This new version natively supports two-factor authentication using the shared secret of your app.
 

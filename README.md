@@ -28,7 +28,7 @@ git clone https://github.com/frk1/steamhourboostv2.git
 `cd` into the folder and install the dependencies
 
 ```bash
-cd steamhourboost
+cd steamhourboostv2
 npm install .
 ```
 

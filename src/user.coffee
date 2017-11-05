@@ -1,3 +1,4 @@
+_         = require 'lodash'
 R         = require 'ramda'
 SteamUser = require 'steam-user'
 SteamTotp = require 'steam-totp'
@@ -55,7 +56,7 @@ inquirer.prompt [
       inquirer.prompt [name: 'code', message: "Steam guard code (#{domain}):"]
       .then ({code}) -> callback code
     else
-      inquirer.prompt [name: 'secret', message: 'Two-factor shared secret:']
+      inquirer.prompt [name: 'secret', message: 'Two-factor shared secret:', type: 'password']
       .then ({secret}) ->
         SteamTotp.generateAuthCode secret, (err, code) ->
           database[index].secret = secret

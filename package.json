@@ -1,10 +1,11 @@
 {
   "name": "steamhourboostv2",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "description": "Steam hour boost with two factor support",
   "main": "boost.coffee",
   "scripts": {
-    "start": "coffee boost.coffee",
+    "start": "coffee src/boost.coffee",
+    "telebot": "coffee src/telebot.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,27 +17,27 @@
     "boost",
     "csgo"
   ],
-  "author": "frk",
+  "author": "frk <hazefrk+dev@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/frk1/steamhourboostv2/issues"
   },
   "homepage": "https://github.com/frk1/steamhourboostv2#readme",
   "dependencies": {
-    "bluebird": "^3.4.1",
-    "coffee-script": "^1.10.0",
-    "inquirer": "^1.1.2",
-    "jsonfile": "^2.3.1",
-    "lodash": "^4.14.2",
-    "moment": "^2.14.1",
-    "ramda": "^0.22.1",
-    "steam-totp": "^1.4.0",
-    "steam-user": "^3.11.1",
-    "string": "^3.3.1",
-    "telegraf": "^2.6.2",
-    "telegraf-flow": "^4.2.0"
+    "bluebird": "^3.5.1",
+    "coffeescript": "^2.0.2",
+    "fuse.js": "^3.2.0",
+    "inquirer": "^3.3.0",
+    "jsonfile": "^4.0.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.1",
+    "ramda": "^0.25.0",
+    "steam-totp": "^2.0.1",
+    "steam-user": "^3.23.2",
+    "string": "^3.3.3",
+    "telegraf": "^3.15.3"
   },
   "engines": {
-    "node": ">=5.10.0"
+    "node": ">=8.9.0"
   }
 }

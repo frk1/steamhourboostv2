@@ -1,13 +1,24 @@
+R         = require 'ramda'
 SteamUser = require 'steam-user'
 SteamTotp = require 'steam-totp'
 inquirer  = require 'inquirer'
+
 jsonfile  = require 'jsonfile'
 jsonfile.spaces = 2
 
 try
   database = jsonfile.readFileSync 'database.json'
-catch e
-  database = {}
+  if _.isPlainObject database
+    jsonfile.writeFileSync 'database.json.bak', database
+    tmp = _.map database, (data, name) ->
+      data.name = name
+      data
+    json.writeFileSync 'database.json', tmp
+    database = tmp
+    console.log "Converted database to new format! The old one has been backuped: database.json.bak"
+catch
+  database = []
+
 secret = null
 
 promptGames =
@@ -25,7 +36,13 @@ inquirer.prompt [
   {name: 'password', message: 'Password:', type: 'password'}
 ]
 .then ({username, password}) ->
-  database[username] = {}
+  index = R.findIndex R.propEq('name', username), database
+  if index is -1
+    database.push
+      name: username
+      password: password
+    index = R.findIndex R.propEq('name', username), database
+
   client = new SteamUser
   client.setOption 'promptSteamGuardCode', false
   client.setOption 'dataDirectory', null
@@ -41,18 +58,18 @@ inquirer.prompt [
       inquirer.prompt [name: 'secret', message: 'Two-factor shared secret:']
       .then ({secret}) ->
         SteamTotp.generateAuthCode secret, (err, code) ->
-          database[username].secret = secret
+          database[index].secret = secret
           callback code
 
   client.on 'sentry', (sentry) ->
-    database[username].sentry = sentry.toString('base64')
+    database[index].sentry = sentry.toString('base64')
     jsonfile.writeFileSync 'database.json', database
 
   client.on 'loggedOn', (details) ->
-    database[username].password = password
+    database[index].password = password
     inquirer.prompt promptGames
     .then ({games}) ->
-      database[username].games = games
+      database[index].games = games
       jsonfile.writeFileSync 'database.json', database
       process.exit 0
 

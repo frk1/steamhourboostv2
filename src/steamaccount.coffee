@@ -7,6 +7,7 @@ EventEmitter = require 'events'
 
 module.exports = class SteamAccount extends EventEmitter
   constructor: (@name, @password, @sentry, @secret, @games, @indent=0) ->
+    super()
     options =
       promptSteamGuardCode: false
       dataDirectory: null

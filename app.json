@@ -1,0 +1,10 @@
+{
+  "apps" : [{
+    "name"        : "booster",
+    "script"      : "./src/boost.coffee"
+  },
+  {
+    "name"       : "telebot",
+    "script"     : "./src/telebot.coffee"
+  }]
+}

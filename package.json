@@ -1,6 +1,6 @@
 {
   "name": "steamhourboostv2",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Steam hour boost with two factor support",
   "main": "boost.coffee",
   "scripts": {

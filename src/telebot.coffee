@@ -70,7 +70,7 @@ bot.command 'list', (ctx) ->
   fmt = 'The following accounts are available:\n'
   fuzzy query
   .map (a) ->
-    fmt += "`- #{a}`"
+    fmt += "`- #{a}`\n"
   ctx.replyWithMarkdown fmt
 
 bot.hears /(.*)/, (ctx) ->

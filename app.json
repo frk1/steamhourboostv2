@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name"        : "booster",
+    "name"        : "boost",
     "script"      : "./src/boost.coffee"
   },
   {

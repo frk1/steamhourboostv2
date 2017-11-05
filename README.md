@@ -2,55 +2,50 @@
 
 This new version natively supports two-factor authentication using the shared secret of your app.
 
-To add new users to the `database.json` run `coffee user.coffee` and follow the instructions.
+To add new users to the `database.json` run `npm run user` and follow the instructions.
 
 By default it will boost the games CS 1.6 and CS:GO. If you want to change the games that are being boosted, edit the `database.json` directly!
 
 ### How to install
-First you need to install a recent version of `node.js`, `coffee-script` and `pm2`:
+First you need to install a recent version (`>= 8.9.0`) of `nodejs`, `coffeescript` and `pm2`. Afterwards we clone the steamhourboostv2 script and install the dependencies:
 
 ```bash
-wget --no-check-certificate "https://nodejs.org/dist/latest/node-$(curl -L 'nodejs.org/dist/index.tab' | sed -n '2p' | awk '{ print $1 }')-linux-x64.tar.gz" -O /tmp/nodejs.tar.gz
-sudo tar --strip-components 1 -xzvf /tmp/nodejs.tar.gz -C /usr/local
-sudo npm -g install npm@latest
-sudo npm -g install coffee-script pm2
-sudo pm2 install coffeescript
-```
-
-Afterwards upload this script to your server, or clone it using `git`:
-
-```bash
-# If git is missing on your server google on how to install it.
-# On Debian/Ubuntu the command is 'sudo apt-get install git'
-git clone https://github.com/frk1/steamhourboostv2.git
-```
-
-`cd` into the folder and install the dependencies
-
-```bash
-cd steamhourboostv2
-npm install .
+apt-get update -yq                                                    && \
+apt-get install -yq git make curl                                     && \
+curl -L https://git.io/n-install | N_PREFIX=~/.n bash -s -- -y latest && \
+source /root/.bashrc                                                  && \
+npm install -g coffeescript pm2 yarn                                  && \
+pm2 install coffeescript                                              && \
+cd ~                                                                  && \
+git clone https://github.com/frk1/steamhourboostv2.git                && \
+cd steamhourboostv2                                                   && \
+yarn install                                                          && \
+clear                                                                 && \
+echo "Done. Run 'npm run user' to add users!"
 ```
 
 ### How to use
 
-After that you can add accounts using `coffee user.coffee`. When you are ready, start the script using `pm2`:
+After that you can add accounts using `npm run user`. When you are ready, start the script using `pm2`:
 
 ```bash
-pm2 start boost.coffee
+# This will start both boosting and the telegram bot.
+pm2 start app.json
+
+# This will work too:
+npm run pm2
+
+# If you only want the boosting script you can tell pm2:
+pm2 start app.json --only boost
 ```
 
 That's it!
 
-### Can I use my old `db.json` file?
+### The database.json format changed
 
-Not directly. But you can convert it:
+steamhourboost will automatically convert your old database.
 
-```bash
-coffee converter.coffee
-```
-
-That's it, your new `database.json` is ready!
+A backup of your old database will be created as `database.json.bak`.
 
 ### How do I restart the script?
 
@@ -60,7 +55,7 @@ That's easy. Just tell `pm2` to do so:
 pm2 restart all
 ```
 
-If you have multiple processes running you may want to specificy the id of the process to restart, you can find it using
+If you have multiple processes running you may want to specify the id of the process to restart, you can find it using
 
 ```bash
 pm2 ls
@@ -70,17 +65,14 @@ pm2 ls
 
 There is an optional telegram bot included to generate 2FA tokens using telegram.
 
-To use it you will need to aquire a bot token from *@BotFather*. Google on how to do that.
+To use it you will need to acquire a bot token from *@BotFather*. Google on how to do that.
 
-Execute `coffee telebot.coffee` once and it will create an empty `telebot.json`. Set your bot token in it and start the bot again.
+Execute `npm run telebot` once and it will create an empty `telebot.json`. Set your bot token  and start the bot again.
 
-Ask your bot about your id (use **telegram**, _not_ the console):
+To find out your id just write anything to the bot. If you are not authorised it will tell you your id.
 
-```
-/id
-Your id is **********
-```
+Set your id as `admin_id` in the `telebot.json`. Now you can start your telegram bot using `npm run pm2`.
 
-Set your id as `admin_id` in the `telebot.json`. Now you can start your telegram bot using `pm2 start telebot.coffee`.
+That's it! Your bot is now waiting for your requests. Ask him about your tokens! Just enter the username (or something close to the username) and it will generate the key:
 
-That's it! Your bot is now waiting for your requests. Ask him about your `/2fa` tokens! It will ask which account you mean.
+![telebot](https://raw.githubusercontent.com/frk1/steamhourboostv2/develop/docs/telebot.gif)

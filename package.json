@@ -4,8 +4,10 @@
   "description": "Steam hour boost with two factor support",
   "main": "boost.coffee",
   "scripts": {
-    "start": "coffee src/boost.coffee",
+    "pm2": "pm2 start app.json",
+    "boost": "coffee src/boost.coffee",
     "telebot": "coffee src/telebot.coffee",
+    "user": "coffee src/user.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

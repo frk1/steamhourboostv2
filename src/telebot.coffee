@@ -3,27 +3,14 @@ R        = require 'ramda'
 Fuse     = require 'fuse.js'
 Promise  = require 'bluebird'
 moment   = require 'moment'
+jsonfile = require 'jsonfile'
 Telegraf = require 'telegraf'
 Markup   = require 'telegraf/markup'
 
-jsonfile  = require 'jsonfile'
-jsonfile.spaces = 2
+manageDB     = require './database'
+database     = manageDB.read()
 
 totp = Promise.promisify require('steam-totp').getAuthCode
-
-try
-  database = jsonfile.readFileSync 'database.json'
-  if _.isPlainObject database
-    jsonfile.writeFileSync 'database.json.bak', database
-    tmp = _.map database, (data, name) ->
-      data.name = name
-      data
-    json.writeFileSync 'database.json', tmp
-    database = tmp
-    console.log "Converted database to new format! The old one has been backuped: database.json.bak"
-  database = R.filter R.has('secret'), database
-catch
-  database = []
 
 try
   {token, admin_id} = jsonfile.readFileSync 'telebot.json'

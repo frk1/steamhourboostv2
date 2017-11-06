@@ -1,3 +1,4 @@
+_            = require 'lodash'
 SteamUser    = require 'steam-user'
 SteamTotp    = require 'steam-totp'
 Promise      = require 'bluebird'
@@ -17,9 +18,7 @@ module.exports = class SteamAccount extends EventEmitter
     @client.once 'steamGuard', => @steamGuardRequested = true
 
   logheader: =>
-    S "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{@name}]"
-    .padRight @indent
-    .s
+    _.padEnd "[#{moment().format('YYYY-MM-DD HH:mm:ss')} - #{@name}]", @indent
 
   error: (err) =>
     @emit 'customError', err

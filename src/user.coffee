@@ -4,21 +4,8 @@ SteamUser = require 'steam-user'
 SteamTotp = require 'steam-totp'
 inquirer  = require 'inquirer'
 
-jsonfile  = require 'jsonfile'
-jsonfile.spaces = 2
-
-try
-  database = jsonfile.readFileSync 'database.json'
-  if _.isPlainObject database
-    jsonfile.writeFileSync 'database.json.bak', database
-    tmp = _.map database, (data, name) ->
-      data.name = name
-      data
-    json.writeFileSync 'database.json', tmp
-    database = tmp
-    console.log "Converted database to new format! The old one has been backuped: database.json.bak"
-catch
-  database = []
+manageDB = require './database'
+database = manageDB.read()
 
 secret = null
 
@@ -64,14 +51,14 @@ inquirer.prompt [
 
   client.on 'sentry', (sentry) ->
     database[index].sentry = sentry.toString('base64')
-    jsonfile.writeFileSync 'database.json', database
+    manageDB.write database
 
   client.on 'loggedOn', (details) ->
     database[index].password = password
     inquirer.prompt promptGames
     .then ({games}) ->
       database[index].games = games
-      jsonfile.writeFileSync 'database.json', database
+      manageDB.write database
       process.exit 0
 
   client.on 'error', (err) ->

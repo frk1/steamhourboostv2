@@ -75,4 +75,4 @@ Set your id as `admin_id` in the `telebot.json`. Now you can start your telegram
 
 That's it! Your bot is now waiting for your requests. Ask him about your tokens! Just enter the username (or something close to the username) and it will generate the key:
 
-![telebot](https://raw.githubusercontent.com/frk1/steamhourboostv2/develop/docs/telebot.gif)
+![telebot](https://raw.githubusercontent.com/frk1/steamhourboostv2/master/docs/telebot.gif)

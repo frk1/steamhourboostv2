@@ -30,13 +30,10 @@ After that you can add accounts using `npm run user`. When you are ready, start 
 
 ```bash
 # This will start both boosting and the telegram bot.
-pm2 start app.json
-
-# This will work too:
 npm run pm2
 
-# If you only want the boosting script you can tell pm2:
-pm2 start app.json --only boost
+# This will work too:
+pm2 start src/app.coffee
 ```
 
 That's it!
@@ -67,11 +64,11 @@ There is an optional telegram bot included to generate 2FA tokens using telegram
 
 To use it you will need to acquire a bot token from *@BotFather*. Google on how to do that.
 
-Execute `npm run telebot` once and it will create an empty `telebot.json`. Set your bot token  and start the bot again.
+Upon first execution steamhourboost will create an empty `telebot.json`. Set your bot token and restart the script.
 
 To find out your id just write anything to the bot. If you are not authorised it will tell you your id.
 
-Set your id as `admin_id` in the `telebot.json`. Now you can start your telegram bot using `npm run pm2`.
+Set your id as `admin_id` in the `telebot.json`. Now restart the script.
 
 That's it! Your bot is now waiting for your requests. Ask him about your tokens! Just enter the username (or something close to the username) and it will generate the key:
 

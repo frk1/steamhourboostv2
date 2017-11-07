@@ -7,6 +7,7 @@
     "app": "coffee src/app.coffee",
     "boost": "coffee src/app.coffee",
     "user": "coffee src/user.coffee",
+    "pm2": "pm2 start src/app.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

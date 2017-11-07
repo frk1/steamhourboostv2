@@ -2,11 +2,10 @@
   "name": "steamhourboostv2",
   "version": "3.0.2",
   "description": "Steam hour boost with two factor support",
-  "main": "boost.coffee",
+  "main": "src/app.coffee",
   "scripts": {
-    "pm2": "pm2 start app.json",
-    "boost": "coffee src/boost.coffee",
-    "telebot": "coffee src/telebot.coffee",
+    "app": "coffee src/app.coffee",
+    "boost": "coffee src/app.coffee",
     "user": "coffee src/user.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

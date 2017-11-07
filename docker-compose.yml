@@ -1,0 +1,8 @@
+version: '3'
+services:
+  hourboost:
+    image: frk1/steamhourboostv2:develop
+    restart: always
+    volumes:
+      - "./telebot.json:/app/telebot.json"
+      - "./database.json:/app/database.json"

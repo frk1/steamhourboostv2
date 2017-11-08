@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/frk1/steamhourboostv2#readme",
   "dependencies": {
+    "app-root-path": "^2.0.1",
     "bluebird": "^3.5.1",
     "coffeescript": "^2.0.2",
     "fuse.js": "^3.2.0",

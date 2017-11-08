@@ -4,7 +4,7 @@ SteamUser = require 'steam-user'
 SteamTotp = require 'steam-totp'
 inquirer  = require 'inquirer'
 
-manageDB = require './database'
+manageDB = reqlib '/src/database'
 database = manageDB.read()
 
 secret = null

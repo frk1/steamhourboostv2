@@ -1,22 +1,23 @@
 _        = require 'lodash'
 R        = require 'ramda'
 Fuse     = require 'fuse.js'
+approot  = require 'app-root-path'
 Promise  = require 'bluebird'
 moment   = require 'moment'
 jsonfile = require 'jsonfile'
 Telegraf = require 'telegraf'
 Markup   = require 'telegraf/markup'
 
-manageDB     = require './database'
-database     = manageDB.read()
+manageDB = reqlib '/src/database'
+database = manageDB.read()
 
 totp = Promise.promisify require('steam-totp').getAuthCode
 
 try
-  {token, admin_id} = jsonfile.readFileSync 'telebot.json'
+  {token, admin_id} = jsonfile.readFileSync(approot + '/config/telebot.json')
 catch e
   {token, admin_id} = obj = token: '', admin_id: 0
-  manageDB.write obj, 'telebot.json'
+  manageDB.write obj, '/config/telebot.json'
 
 validate_admin = (ctx, next) ->
   if ctx.from.id is admin_id

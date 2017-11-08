@@ -1,12 +1,13 @@
-_            = require 'lodash'
-R            = require 'ramda'
-Promise      = require 'bluebird'
+_             = require 'lodash'
+R             = require 'ramda'
+Promise       = require 'bluebird'
+global.reqlib = require('app-root-path').require
 
-SteamAccount = require './steamaccount.coffee'
-manageDB     = require './database'
+SteamAccount = reqlib '/src/steamaccount.coffee'
+manageDB     = reqlib '/src/database'
 database     = manageDB.read()
 
-telebotStart = require './telebot'
+telebotStart = reqlib '/src/telebot'
 telebotStart()
 
 if database.length is 0

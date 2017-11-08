@@ -8,22 +8,22 @@ jsonfile = require 'jsonfile'
 Telegraf = require 'telegraf'
 Markup   = require 'telegraf/markup'
 
-manageDB = reqlib '/src/database'
+manageDB = reqlib 'src/database'
 database = manageDB.read()
 
 totp = Promise.promisify require('steam-totp').getAuthCode
 
 try
-  {token, admin_id} = jsonfile.readFileSync(approot + '/config/telebot.json')
+  {token, admin_id} = manageDB.read 'config/telebot.json'
 catch e
   {token, admin_id} = obj = token: '', admin_id: 0
-  manageDB.write obj, '/config/telebot.json'
+  manageDB.write obj, 'config/telebot.json'
 
 validate_admin = (ctx, next) ->
   if ctx.from.id is admin_id
     next()
   else
-    console.error "[#{moment().format()}] #{ctx.from.id} tried to request!"
+    console.error "[#] [#{moment().format()}] #{ctx.from.id} tried to request!"
     ctx.replyWithMarkdown """
     You *do not* have the permission to use this bot!
 
@@ -83,9 +83,9 @@ bot.hears /(.*)/, (ctx) ->
 
 start = ->
   if token is ''
-    console.log 'If you want to use the telegram bot please set a valid token in telebot.json!'
+    console.log '[!] If you want to use the telegram bot please set a valid token in telebot.json!'
   else
-    console.log '\n---- Starting telegram bot ----\n'
+    console.log '[=] Start Telegram bot'
     bot.startPolling()
 
 module.exports = start

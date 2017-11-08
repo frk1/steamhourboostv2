@@ -1,32 +1,29 @@
 _        = require 'lodash'
 R        = require 'ramda'
 Fuse     = require 'fuse.js'
+approot  = require 'app-root-path'
 Promise  = require 'bluebird'
 moment   = require 'moment'
 jsonfile = require 'jsonfile'
 Telegraf = require 'telegraf'
 Markup   = require 'telegraf/markup'
 
-manageDB     = require './database'
-database     = manageDB.read()
+manageDB = reqlib 'src/database'
+database = manageDB.read()
 
 totp = Promise.promisify require('steam-totp').getAuthCode
 
 try
-  {token, admin_id} = jsonfile.readFileSync 'telebot.json'
+  {token, admin_id} = manageDB.read 'config/telebot.json'
 catch e
   {token, admin_id} = obj = token: '', admin_id: 0
-  jsonfile.writeFileSync 'telebot.json', obj
-
-if token is ''
-  console.error 'Please configure your telegram bot first!'
-  process.exit 1
+  manageDB.write obj, 'config/telebot.json'
 
 validate_admin = (ctx, next) ->
   if ctx.from.id is admin_id
     next()
   else
-    console.error "[#{moment().format()}] #{ctx.from.id} tried to request!"
+    console.error "[#] [#{moment().format()}] #{ctx.from.id} tried to request!"
     ctx.replyWithMarkdown """
     You *do not* have the permission to use this bot!
 
@@ -84,4 +81,11 @@ bot.hears /(.*)/, (ctx) ->
     Try */list* to get a list of available accounts!
     """
 
-bot.startPolling()
+start = ->
+  if token is ''
+    console.log '[!] If you want to use the telegram bot please set a valid token in telebot.json!'
+  else
+    console.log '[=] Start Telegram bot'
+    bot.startPolling()
+
+module.exports = start

@@ -15,7 +15,7 @@ convertOldDatabaseFormat = ->
   if not fs.pathExistsSync path
     return manageDB.write []
 
-  database = fs.readJsonSync path
+  database = manageDB.read()
   return if not _.isPlainObject database
 
   manageDB.write database, 'config/database.json.bak'

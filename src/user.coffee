@@ -1,10 +1,11 @@
-_         = require 'lodash'
-R         = require 'ramda'
-SteamUser = require 'steam-user'
-SteamTotp = require 'steam-totp'
-inquirer  = require 'inquirer'
+_             = require 'lodash'
+R             = require 'ramda'
+SteamUser     = require 'steam-user'
+SteamTotp     = require 'steam-totp'
+inquirer      = require 'inquirer'
+global.reqlib = require('app-root-path').require
 
-manageDB = reqlib '/src/database'
+manageDB = reqlib 'src/database'
 database = manageDB.read()
 
 secret = null

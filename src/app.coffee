@@ -3,15 +3,18 @@ R             = require 'ramda'
 Promise       = require 'bluebird'
 global.reqlib = require('app-root-path').require
 
-SteamAccount = reqlib '/src/steamaccount.coffee'
-manageDB     = reqlib '/src/database'
-database     = manageDB.read()
+migrate      = reqlib 'src/migrate'
+manageDB     = reqlib 'src/database'
+SteamAccount = reqlib 'src/steamaccount'
 
-telebotStart = reqlib '/src/telebot'
+migrate()
+database = manageDB.read()
+
+telebotStart = reqlib 'src/telebot'
 telebotStart()
 
 if database.length is 0
-  console.log 'No accounts have been added! Please run \'npm run user\' to add accounts!'
+  console.error '[!] No accounts have been added! Please run \'npm run user\' to add accounts!'
   process.exit 0
 
 pad = 24 + _.maxBy(R.pluck('name', database), 'length').length
@@ -22,12 +25,12 @@ accounts = _.compact database.map ({name, password, sentry, secret, games=[]}) -
     null
 
 restartBoost = ->
-  console.log '\n---- Restarting accounts ----\n'
+  console.log '[=] Restart boosting'
   Promise.map accounts, _.method 'restartGames'
   .delay 1800000
   .finally restartBoost
 
-console.log '\n---- Starting to boost ----\n'
+console.log '[=] Start boosting'
 Promise.map accounts, _.method 'boost'
 .delay 1800000
 .then restartBoost

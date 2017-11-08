@@ -1,4 +1,5 @@
 [![GitHub package version](https://img.shields.io/github/package-json/v/frk1/steamhourboostv2.svg)](https://github.com/frk1/steamhourboostv2/tree/master)
+[![Known Vulnerabilities](https://snyk.io/test/github/frk1/steamhourboostv2/badge.svg)](https://snyk.io/test/github/frk1/steamhourboostv2)
 [![Docker Automated build](https://img.shields.io/docker/automated/frk1/steamhourboostv2.svg)](https://hub.docker.com/r/frk1/steamhourboostv2/)
 [![Docker Build Status](https://img.shields.io/docker/build/frk1/steamhourboostv2.svg)](https://hub.docker.com/r/frk1/steamhourboostv2/)
 [![GitHub stars](https://img.shields.io/github/stars/frk1/steamhourboostv2.svg?style=social&label=Stars)](https://github.com/frk1/steamhourboostv2)

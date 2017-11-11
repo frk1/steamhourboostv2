@@ -5,12 +5,11 @@ import Promise from "bluebird"
 import migrate from "./migrate"
 import SteamAccount from "./steamaccount"
 import * as manageDB from "./database"
+import telebotStart from "./telebot"
 
 migrate()
-const database = manageDB.read()
-
-import telebotStart from "./telebot"
 telebotStart()
+const database = manageDB.read()
 
 if (database.length === 0) {
   console.error(
@@ -20,13 +19,10 @@ if (database.length === 0) {
 }
 
 const pad = 24 + _.maxBy(R.pluck("name", database), "length").length
-const accounts = _.compact(
-  database.map(({ name, password, sentry, secret, games = [] }) => {
+const accounts = database.map(({ name, password, sentry, secret, games = [] }) => {
     if (games.length > 0) return new SteamAccount(name, password, sentry, secret, games, pad)
-
     return null
-  })
-)
+  }).filter(val => val !== null)
 
 const restartBoost = () => {
   console.log("[=] Restart boosting")

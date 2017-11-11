@@ -8,7 +8,6 @@ import * as manageDB from "./database"
 const database = manageDB.read()
 
 const totp = Promise.promisify(require("steam-totp").getAuthCode)
-
 let token, admin_id
 
 try {

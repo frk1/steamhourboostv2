@@ -8,12 +8,6 @@ import EventEmitter from "events"
 export default class SteamAccount extends EventEmitter {
   constructor(name, password, sentry, secret, games, indent = 0) {
     super()
-    this.logheader = this.logheader.bind(this)
-    this.error = this.error.bind(this)
-    this.login = this.login.bind(this)
-    this.logoff = this.logoff.bind(this)
-    this.boost = this.boost.bind(this)
-    this.restartGames = this.restartGames.bind(this)
     this.name = name
     this.password = password
     this.sentry = sentry
@@ -45,7 +39,6 @@ export default class SteamAccount extends EventEmitter {
 
   login() {
     if (this.client.client.loggedOn) return Promise.resolve()
-
     if (this.steamGuardRequested && !this.secret) return Promise.reject("Steam guard requested!")
 
     return new Promise((resolve, reject) => {
@@ -76,7 +69,6 @@ export default class SteamAccount extends EventEmitter {
 
   logoff() {
     if (!this.client.client.loggedOn) return
-
     this.client.gamesPlayed([])
     return this.client.logOff()
   }

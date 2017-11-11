@@ -9,6 +9,7 @@
     "boost": "node lib/app.js",
     "user": "node lib/user.js",
     "pm2": "pm2 start lib/app.js",
+    "precommit": "npm run build && git add lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -49,6 +50,7 @@
     "eslint": "^4.11.0",
     "eslint-config-recommended": "^1.5.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1"
+    "eslint-plugin-node": "^5.2.1",
+    "husky": "^0.14.3"
   }
 }

@@ -4,10 +4,11 @@
   "description": "Steam hour boost with two factor support",
   "main": "src/app.coffee",
   "scripts": {
-    "app": "coffee src/app.coffee",
-    "boost": "coffee src/app.coffee",
-    "user": "coffee src/user.coffee",
-    "pm2": "pm2 start src/app.coffee",
+    "build": "babel src -d lib",
+    "app": "node lib/app.js",
+    "boost": "node lib/app.js",
+    "user": "node lib/user.js",
+    "pm2": "pm2 start lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,7 +29,6 @@
   "dependencies": {
     "app-root-path": "^2.0.1",
     "bluebird": "^3.5.1",
-    "coffeescript": "^2.0.2",
     "fs-extra": "^4.0.2",
     "fuse.js": "^3.2.0",
     "inquirer": "^3.3.0",
@@ -41,5 +41,9 @@
   },
   "engines": {
     "node": ">=8.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
   }
 }

@@ -22,7 +22,6 @@ module.exports = {
     "no-trailing-spaces": "error",
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
-    //"prettier/prettier": "error",
     "react/no-deprecated": "off",
     semi: ["error", "never"],
     strict: "error",

@@ -25,7 +25,7 @@ npm install -g pm2 yarn                                               && \
 cd ~                                                                  && \
 git clone https://github.com/frk1/steamhourboostv2.git                && \
 cd steamhourboostv2                                                   && \
-yarn install                                                          && \
+yarn install --production                                             && \
 clear                                                                 && \
 echo "Done. Run 'npm run user' to add users!"
 ```

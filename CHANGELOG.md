@@ -7,7 +7,7 @@
 4.1.0 / 2017-11-12
 ==================
 
-  * 📝 Update Reamde
+  * 📝 Update Readme
   * 🐛 Fix crash if database.json was not created already
   * 🔨 Cleanup after conversion
   * ✨ Add husky git-commit hooks

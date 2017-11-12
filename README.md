@@ -14,15 +14,14 @@ To add new users to the `config/database.json` run `npm run user` and follow the
 By default it will boost the games CS 1.6 and CS:GO. If you want to change the games that are being boosted, edit the `config/database.json` directly!
 
 ### How to install
-First you need to install a recent version (`>= 8.9.0`) of `node`, `coffeescript` and `pm2`. Afterwards we clone the steamhourboostv2 script and install the dependencies:
+First you need to install a recent version (`>= 8.9.0`) of `node` and `pm2`. Afterwards we clone the steamhourboostv2 script and install the dependencies:
 
 ```bash
 apt-get update -yq                                                    && \
 apt-get install -yq git make curl                                     && \
 curl -L https://git.io/n-install | N_PREFIX=~/.n bash -s -- -y latest && \
 source /root/.bashrc                                                  && \
-npm install -g coffeescript pm2 yarn                                  && \
-pm2 install coffeescript                                              && \
+npm install -g pm2 yarn                                               && \
 cd ~                                                                  && \
 git clone https://github.com/frk1/steamhourboostv2.git                && \
 cd steamhourboostv2                                                   && \
@@ -40,7 +39,7 @@ After that you can add accounts using `npm run user`. When you are ready, start 
 npm run pm2
 
 # This will work too:
-pm2 start src/app.coffee
+pm2 start lib/app.js
 ```
 
 If you want to start the script **without** pm2 (to test for example):
@@ -50,7 +49,7 @@ If you want to start the script **without** pm2 (to test for example):
 npm run app
 
 # This will work too
-coffee src/app.coffee
+node lib/app.js
 ```
 
 ### The database.json format changed

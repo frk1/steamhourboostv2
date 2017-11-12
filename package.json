@@ -1,15 +1,13 @@
 {
   "name": "steamhourboostv2",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Steam hour boost with two factor support",
-  "main": "src/app.coffee",
+  "main": "lib/app.js",
   "scripts": {
-    "build": "babel src -d lib",
     "app": "node lib/app.js",
     "boost": "node lib/app.js",
     "user": "node lib/user.js",
     "pm2": "pm2 start lib/app.js",
-    "precommit": "npm run build && git add lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -44,13 +42,9 @@
     "node": ">=8.9.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.2",
-    "babel-preset-env": "^1.6.1",
     "eslint": "^4.11.0",
     "eslint-config-recommended": "^1.5.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "husky": "^0.14.3"
+    "eslint-plugin-node": "^5.2.1"
   }
 }

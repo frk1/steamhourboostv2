@@ -31,9 +31,5 @@ module.exports = {
     yoda: ["error", "never", { exceptRange: true }]
   },
   parserOptions: {
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true
-    }
   }
 };

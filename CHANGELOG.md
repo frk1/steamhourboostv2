@@ -1,3 +1,16 @@
+4.1.0 / 2017-11-12
+==================
+
+  * 📝 Update Reamde
+  * 🐛 Fix crash if database.json was not created already
+  * 🔨 Cleanup after conversion
+  * ✨ Add husky git-commit hooks
+  * 🐋 Update Dockerfile
+  * 🔥 Remove coffeelint.json
+  * 🔧 Add devDependencies
+  * 🐋 Update Dockerfile
+  * 🚀 Migrate from coffeescript to ES2016+ javascript!
+  * 📝 readme: add snyk.io vulnerabilities badge
 
 4.0.1 / 2017-11-08
 ==================

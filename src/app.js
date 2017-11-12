@@ -3,13 +3,14 @@ import R from "ramda"
 import Promise from "bluebird"
 
 import migrate from "./migrate"
+migrate()
+
 import SteamAccount from "./steamaccount"
 import * as manageDB from "./database"
-import telebotStart from "./telebot"
 
-migrate()
-telebotStart()
 const database = manageDB.read()
+const telebot = require("./telebot")
+telebot.default()
 
 if (database.length === 0) {
   console.error(

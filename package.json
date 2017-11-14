@@ -1,6 +1,6 @@
 {
   "name": "steamhourboostv2",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Steam hour boost with two factor support",
   "main": "lib/app.js",
   "scripts": {
@@ -8,6 +8,7 @@
     "boost": "node lib/app.js",
     "user": "node lib/user.js",
     "pm2": "pm2 start lib/app.js",
+    "pretty": "prettier-eslint lib/*.js --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -45,6 +46,8 @@
     "eslint": "^4.11.0",
     "eslint-config-recommended": "^1.5.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1"
+    "eslint-plugin-node": "^5.2.1",
+    "prettier": "^1.8.2",
+    "prettier-eslint-cli": "^4.4.0"
   }
 }

@@ -1,3 +1,13 @@
+
+4.1.2 / 2017-11-14
+==================
+
+  * 🚑 Fix steam accounts not restarting
+  * 🎨 app.js: prefer ternary operator
+  * 📝 readme: install production dependencies only
+  * ✏️ changelog: fix typo
+  * ✨ Add pretty script to format using prettier
+
 4.1.1 / 2017-11-12
 ==================
 

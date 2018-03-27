@@ -7,14 +7,14 @@
 
 ## steamhourboost v2
 
-This new version natively supports two-factor authentication using the shared secret of your app.
+An new version of an application for boosting the hours of Steam games. The new version supports two-factor authentication using a shared secret key.
 
-To add new users to the `config/database.json` run `npm run user` and follow the instructions.
+New users can be added to the `config/database.json`. Just run `npm run user` and follow the instructions.
 
-By default it will boost the games CS 1.6 and CS:GO. If you want to change the games that are being boosted, edit the `config/database.json` directly!
+By default the application will boost CS 1.6 and CS:GO. The boosted game can be changed by editing the `config/database.json`.
 
-### How to install
-First you need to install a recent version (`>= 8.9.0`) of `node` and `pm2`. Afterwards we clone the steamhourboostv2 script and install the dependencies:
+### Installation
+Install a (version `>= 8.9.0`) `node` and `pm2`. Clone the steamhourboostv2 repository and install dependencies:
 
 ```bash
 apt-get update -yq                                                    && \
@@ -30,46 +30,46 @@ clear                                                                 && \
 echo "Done. Run 'npm run user' to add users!"
 ```
 
-### How to use
+### Usage
 
-After that you can add accounts using `npm run user`. When you are ready, start the script using `pm2`:
+Accounts can be added with `npm run user`. Start the script using `pm2`:
 
 ```bash
-# This will start both boosting and the telegram bot.
+# Start boosting and telegram bot
 npm run pm2
 
-# This will work too:
+# Alternate command
 pm2 start lib/app.js
 ```
 
-If you want to start the script **without** pm2 (to test for example):
+To start the application **without** pm2:
 
 ```bash
-# This will start both boosting and the telegram bot.
+# Start boosting and telegram bot.
 npm run app
 
-# This will work too
+# Alternate command
 node lib/app.js
 ```
 
-### The database.json format changed
+### The database.json format
 
-The configuration files are now saved in the sub-folder `config`.
-If you need to manually edit the files remember to edit the files **inside the config folder**!
+The configuration files are saved in the `config` subfolder.
+If files need to be edited, remember to also edit the files **inside the config folder**!
 
-steamhourboost will automatically convert your old database and move it if necessary.
+steamhourboost will automatically convert the old database and move it if necessary.
 
-A backup of your old database will be created as `database.json.bak`.
+A backup of the old database will be created as `database.json.bak`.
 
-### How do I restart the script?
+### Restarting the application
 
-That's easy. Just tell `pm2` to do so:
+Just do the following:
 
 ```bash
 pm2 restart all
 ```
 
-If you have multiple processes running you may want to specify the id of the process to restart, you can find it using
+If multiple processes are running, the ID of the process to be restarted must be specified.  The ID can be found using:
 
 ```bash
 pm2 ls
@@ -77,23 +77,23 @@ pm2 ls
 
 ### Docker
 
-You can use [steamhourboost](https://hub.docker.com/r/frk1/steamhourboostv2/) with Docker too. Just copy the `docker-compose.yml` and run it.
-By default the `develop` branch is selected, if you want to change that edit the compose file to target the `latest` tag instead.
+[Steamhourboost](https://hub.docker.com/r/frk1/steamhourboostv2/) can be used Docker. Copy the `docker-compose.yml` and run it.
+The `develop` branch is selected by default. To change branches, edit the compose file to target the `latest` tag.
 
 The images are based on [mhart/alpine-node](https://github.com/mhart/alpine-node) and are as minimal as possible.
 
 ## Telegram Bot
 
-There is an optional telegram bot included to generate 2FA tokens using telegram.
+An optional telegram bot is included to generate 2FA tokens using telegram.
 
-To use it you will need to acquire a bot token from *@BotFather*. Google on how to do that.
+To use the Telegram Bot, [acquire a bot token from *@BotFather*](https://core.telegram.org/bots#6-botfather).
 
-Upon first execution steamhourboost will create an empty `config/telebot.json`. Set your bot token and restart the script.
+The first execution of steamhourboost will create an empty `config/telebot.json`. Set the bot token and restart the application.
 
-To find out your id just write anything to the bot. If you are not authorised it will tell you your id.
+To find out the id, write anything to the bot.
 
-Set your id as `admin_id` in the `config/telebot.json`. Now restart the script.
+Set the id as `admin_id` in the `config/telebot.json` and restart the application.
 
-That's it! Your bot is now waiting for your requests. Ask him about your tokens! Just enter the username (or something close to the username) and it will generate the key:
+That's it! The bot is now waiting for requests. Ask him about tokens! Just enter the username (or something close similar) and it will generate the key:
 
 ![telebot](https://raw.githubusercontent.com/frk1/steamhourboostv2/master/docs/telebot.gif)

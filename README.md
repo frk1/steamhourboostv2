@@ -7,7 +7,7 @@
 
 ## steamhourboost v2
 
-An new version of an application for boosting the hours of Steam games. The new version supports two-factor authentication using a shared secret key.
+A new version of an application for boosting the hours of Steam games. The new version supports two-factor authentication using a shared secret key.
 
 New users can be added to the `config/database.json`. Just run `npm run user` and follow the instructions.
 

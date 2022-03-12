@@ -1,0 +1,10 @@
+[
+  {
+    "name": "dummyUser",
+    "password": "myPassword",
+    "games": [
+      233860,
+      22320
+    ]
+  }
+]

@@ -1,6 +1,4 @@
-database.json
 node_modules
-db.json
-telebot.json
-*.bak
-config/
+config/database.json
+session/loginKey-*
+package-lock.json
